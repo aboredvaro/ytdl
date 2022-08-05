@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FiArrowRight, FiLoader } from 'react-icons/fi';
-// import getVideoInfo from '../js/ytdl.js';
+import { getVideoID } from 'ytdl-core';
 
 export default function Home({}) {
   const [URL, setURL] = useState<string>(null);
@@ -11,7 +11,7 @@ export default function Home({}) {
     setLoading(true);
 
     try {
-      await fetch(`http://localhost:3000/getVideoDetails?url=${URL}`)
+      await fetch(`${window.location.origin}/getVideoDetails?url=${URL}`)
         .then((res) => res.json())
         .then((res) => {
           setLoading(false);
@@ -26,7 +26,7 @@ export default function Home({}) {
   const onChange = (e) => {
     const url: string = e.target.value;
     if (url.length > 0) {
-      setURL(url);
+      setURL(getVideoID(url));
     } else {
       setURL(null);
     }

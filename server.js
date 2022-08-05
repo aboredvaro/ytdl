@@ -3,7 +3,7 @@ const ytdl = require('ytdl-core');
 const fs = require('fs');
 const next = require('next');
 
-const port = parseInt(process.env.PORT, 10) || 3000;
+const port = parseInt(process.env.PORT, 10) || 3001;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -11,24 +11,31 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
+  //=================//
+  //    VIDEO API    //
+  //=================//
+
   server.get('/getVideoDetails', async (req, res) => {
     let URL = req.query.url;
     const info = await ytdl.getBasicInfo(URL);
-
     const response = {
       title: info.player_response.videoDetails.title,
-      image:
-        info.player_response.videoDetails.thumbnail.thumbnails[
-          info.player_response.videoDetails.thumbnail.thumbnails.length - 1
-        ].url,
+      image: `https://img.youtube.com/vi/${URL}/maxresdefault.jpg`,
     };
-
     res.send(JSON.stringify(response));
   });
 
-  server.get('*', (req, res) => {
+  //======================//
+  //    NEXT JS SERVER    //
+  //======================//
+
+  server.all('*', (req, res) => {
     return handle(req, res);
   });
+
+  //===================//
+  //    SERVER INIT    //
+  //===================//
 
   server.listen(port, () => {
     console.log(`> Ready on http://localhost:${port}`);
