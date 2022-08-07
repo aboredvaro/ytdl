@@ -3,13 +3,13 @@ import '../styles/globals.scss';
 
 function App({ Component, pageProps }) {
   return (
-    <div className="text-base text-gray-900">
+    <>
       <Head>
-        <title>Youtube Downloader</title>
+        <title>Downtube</title>
         <meta property="og:title" content="TFG" key="title" />
       </Head>
       <Component {...pageProps} />
-    </div>
+    </>
   );
 }
 
