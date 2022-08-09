@@ -79,13 +79,6 @@ export default function Home({}) {
         </button>
       </form>
 
-      <p className="select-all opacity-0 hover:opacity-20 absolute top-0 left-0">
-        https://www.youtube.com/watch?v=b7-Mq6i9H0k
-      </p>
-      <p className="select-all opacity-0 hover:opacity-20 absolute top-0 right-0">
-        https://www.youtube.com/watch?v=2HcVZm_4qAI
-      </p>
-
       <Transition
         as="div"
         show={!firstSearch && !loading}
