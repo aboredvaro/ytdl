@@ -10,7 +10,7 @@ export default function VideoResult({ data }) {
   const [errorImage, setErrorImage] = useState<number>(0);
 
   useEffect(() => {
-    setErrorImage(Math.floor(Math.random() * 6));
+    setErrorImage(Math.floor(Math.random() * 25));
   }, [data]);
 
   const download = async () => {
@@ -119,7 +119,7 @@ export default function VideoResult({ data }) {
       />
       <p className="text-lg md:text-base font-medium mb-0.5">Can't download video</p>
       <p className="text-base md:text-sm text-gray-500">
-        Recently uploaded videos can take a while to render... try again later
+        Recently uploaded or zone/age restricted videos can't be downloaded yet
       </p>
     </div>
   );

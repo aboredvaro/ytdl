@@ -39,7 +39,7 @@ app.prepare().then(() => {
       };
       res.send(JSON.stringify(response));
     } catch (error) {
-      console.log(error);
+      console.log('Error', error);
       res.send(false);
     }
   });
